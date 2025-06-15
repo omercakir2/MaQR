@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}MaQR{% endblock %}
+
+{% block left %}
+<center>
+    <h1>Welcome to The QR Code Generator!</h1>
+</center>
+
+<form method="POST">
+    {% csrf_token %}
+    <div style="width: 350px; margin: auto;">
+        <label class="form-label mt-4">Url Adress</label>
+        <input name="url" type="text" class="form-control" id="url" aria-describedby="urlHelp" placeholder="Enter url">
+
+        <label for="fill_color">QR Color:</label>
+        <input type="color" id="fill_color" name="fill_color" value="#000000">
+
+        <label for="back_color">Background Color:</label>
+        <input type="color" id="back_color" name="back_color" value="#ffffff">
+        <h4 id="UrllHelp" class="text-muted">
+            You can either enter url with http or https or just domain name
+        </h4>
+        <br>
+        <h4 id="UrllHelp" class="text-muted">
+            Example: google.com or www.google.com or https://www.google.com
+        </h4>
+
+        <button type="submit" id="submitBtn" class="btn btn-primary" disabled>Generate</button>
+</form>
+
+
+</div>
+
+<!-- JavaScript to control the button -->
+<script>
+    const urlInput = document.getElementById("url");
+    const submitButton = document.getElementById("submitBtn");
+
+    urlInput.addEventListener("input", () => {
+        // Trim whitespace and check if input has any characters
+        if (urlInput.value.trim().length > 0) {
+            submitButton.disabled = false;
+        } else {
+            submitButton.disabled = true;
+        }
+    });
+</script>
+{% endblock %}
+
+{% block right %}
+<div style="width: 350px; margin: auto;">
+
+    {% if qr %}
+    <div class="card mb-3">
+        <h3 class="card-header">Generated QR Code</h3>
+        <div class="card-body">
+            <h5 class="card-title">Content : {{url}}</h5>
+        </div>
+        <img src="data:image/png;base64,{{ qr }}" alt="QR Code">
+        <rect width="100%" height="100%" fill="#868e96"></rect>
+        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">{{url}}</text>
+
+    </div>
+
+    <a href="data:image/png;base64,{{ qr }}" download="qrcode.png">
+        <button type="button" class="btn btn-outline-success">Download The Png</button>
+    </a>
+    {% endif %}
+</div>
+{% endblock %}
+

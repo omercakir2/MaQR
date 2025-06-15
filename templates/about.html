@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+  About
+{% endblock  %}
+
+{% block left %}
+  <section style="max-width: 700px; margin: 40px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+    <h2 style="text-align: center; color: #333;">📌 Application Features</h2>
+    <p>This application allows you to <strong>easily generate QR codes</strong> from any URL. Just enter a valid link and optionally customize the <strong>foreground and background colors</strong> of your QR code.</p>
+
+    <h4>✅ Features:</h4>
+    <ul>
+        <li>🧾 Generate a QR code from any URL</li>
+        <li>🎨 Choose custom colors for foreground and background</li>
+        <li>🔒 Validates the input and warns for empty or invalid URLs</li>
+        <li>💾 Instantly download the generated QR code</li>
+        <li>🖼️ Live preview of the QR code on the page</li>
+    </ul>
+
+    <h4>🚀 How to Use:</h4>
+    <ol>
+        <li>Enter a URL</li>
+        <li>Choose your preferred colors (optional)</li>
+        <li>Click the “Submit” button</li>
+        <li>Your QR code will be generated instantly!</li>
+    </ol>
+</section>
+{% endblock left %}

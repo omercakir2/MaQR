@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Site{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">MaQR</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about'%}">About</a>
+                    </li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+
+    <!-- Messages -->
+    <div style="width: 350px; margin: auto;">
+
+        <div class="container mt-3">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+    </div>
+    <!-- Page Content -->
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Left Side -->
+            <div class="col-md-8">
+                {% block left %}
+                <!-- You can override this in child templates -->
+                {% endblock %}
+            </div>
+
+            <!-- Right Side -->
+            <div class="col-md-4">
+                {% block right %}
+                <!-- You can override this in child templates -->
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+
+<footer class="bg-dark text-white mt-5 py-3">
+    <div class="container text-center">
+        <p class="mb-1">© 2025 QR-Code Generator</p>
+        <p>Omer Cakir</p>
+        <p class="mb-0">
+            <a href="https://github.com/omercakir2/" class="text-light me-3">GitHub💻</a>
+            <a href="#" class="text-light me-3">Privacy</a>
+            <a href="#" class="text-light">Terms</a><br>
+        </p>
+    </div>
+</footer>
+
+</html>%
+
+</html>

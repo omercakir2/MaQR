@@ -1,0 +1,52 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.sqlite3
+db.sqlite3
+
+# Secret files
+.env
+*.env
+
+# VSCode settings
+.vscode/
+
+# macOS / Linux
+.DS_Store
+Thumbs.db
+
+# Migrations (optional)
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# Compiled static files (if you run collectstatic)
+staticfiles/
+static_root/
+
+# Media files (if user uploads added)
+media/
+
+# Cache
+*.cache
+
+# Coverage reports
+htmlcov/
+coverage.xml
+*.cover
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
