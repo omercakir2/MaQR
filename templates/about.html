@@ -7,7 +7,7 @@
 {% block left %}
   <section style="max-width: 700px; margin: 40px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
     <h2 style="text-align: center; color: #333;">📌 Application Features</h2>
-    <p>This application allows you to <strong>easily generate QR codes</strong> from any URL. Just enter a valid link and optionally customize the <strong>foreground and background colors</strong> of your QR code.</p>
+    <p>MaQR allows you to <strong>easily generate QR codes</strong> from any URL (even texts). Just enter a valid link and optionally customize the <strong>foreground and background colors</strong> </p>
 
     <h4>✅ Features:</h4>
     <ul>
@@ -26,4 +26,16 @@
         <li>Your QR code will be generated instantly!</li>
     </ol>
 </section>
-{% endblock left %}
+{% endblock left %}{% block right %}
+<section style="max-width: 700px; margin: 40px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+    <h2 style="text-align: center; color: #333;">👨‍💻 Who Am I?</h2>
+    <p>I am Omer Cakir, a CTIS student at Bilkent University with a focus on creating practical and user-friendly applications. I have developed this web application using Django framework.</p>
+    <p> This QR code generator is one of my projects aimed at providing a simple and efficient tool for generating customizable QR codes <h5>without adds!</h5></p> 
+    <p>You can see my other project on my github repos </p>
+    <ul>
+        <li><a href="https://github.com/omercakir2/" target="_blank">GitHub</a></li>
+        <li><a href="#" target="_blank">LinkedIn (Coming Soon)</a></li>
+    </ul>
+    <p>Feel free to reach out if you have any questions or feedback!</p>
+</section>
+{% endblock right %}
