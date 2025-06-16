@@ -10,6 +10,11 @@ A simple and customizable Django-based web application that allows users to gene
   <img src="sample_pngs/qr1.png" alt="Homepage Screenshot" width="500"/>
   <br><br>
   <img src="sample_pngs/qr2.png" alt="Generated QR Code" width="500"/>
+  <br><br>
+  <img src="sample_pngs/qr3.png" alt="Generated QR Code" width="500"/>
+  <br><br>
+  <img src="sample_pngs/qr4.png" alt="Generated QR Code" width="500"/>
+  <br><br>  
 </div>
 
 ---
