@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+Answer
+{% endblock title %}
+
+{% block left %}
+<div style="width: 400px; margin:auto">
+    <h2>Message from {{message.name}}</h2>
+    <p>Message content : {{message.message}}</p>
+    <p>Time : {{message.timestamp}}</p>
+
+    <h3>Answer to that support</h3>
+    {% for answer in answers %}
+    <small>{{answer.timestamp}}</small>
+    <p>{{answer.answer}}</p>
+    <br>
+    {% endfor %}
+</div>
+{% endblock left %}
+
+{% block right %}
+<form method="POST">
+    {% csrf_token %}
+    <div style="width: 350px; margin: auto">
+        <label class="form-label mt-8">Answer</label>
+        <textarea name="answer" type="text" class="form-control" id="answer" placeholder="Answer here" rows="10"
+            maxlength="1000"></textarea>
+
+        <button type="submit" id="submitBtn" class="btn btn-primary">Answer</button>
+    </div>
+</form>
+{% endblock right %}

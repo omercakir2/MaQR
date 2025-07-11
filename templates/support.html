@@ -9,25 +9,83 @@ Contact
     {% csrf_token %}
     <div style="width: 350px; margin: auto">
         <label class="form-label mt-4">Your Name</label>
-        <input name="name" type="text" class="form-control" id="name" placeholder="Enter your name">
+        <input name="name" type="text" class="form-control" id="name" placeholder="Enter your name" maxlength="50">
+        <p id="nameHelp" class="text-muted"></p>
 
         <label class="form-label mt-4">Your E-mail</label>
-        <input name="email" type="text" class="form-control" id="email" placeholder="Enter your e-mail">
+        <input name="email" type="text" class="form-control" id="email" placeholder="Enter your e-mail" maxlength="50">
+        <p id="emailHelp" class="text-muted"></p>
 
         <label class="form-label mt-8">Message</label>
-        <textarea name="message" type="text" class="form-control" id="message" placeholder="Message here"
-            rows="10"></textarea>
+        <textarea name="message" type="text" class="form-control" id="message" placeholder="Message here" rows="10"
+            maxlength="1000"></textarea>
+        <p id="messageHelp" class="text-muted"></p>
 
-        <button type="submit" id="submitBtn" class="btn btn-primary">Send It</button>
+        <button type="submit" id="submitBtn" class="btn btn-primary" disabled>Send It</button>
     </div>
 </form>
+
+<script>
+    const submitButton = document.getElementById("submitBtn");
+    const EmailInput = document.getElementById("email");
+    const NameInput = document.getElementById("name");
+    const MessageInput = document.getElementById("message");
+    const emailHelp = document.getElementById("emailHelp");
+    const nameHelp = document.getElementById("nameHelp");
+    const messageHelp = document.getElementById("messageHelp");
+
+
+    EmailInput.addEventListener("input", () => {
+        if (EmailInput.value.trim().length >= 50) {
+            emailHelp.textContent = "You cannot enter more than 50 characters!";
+
+        } else {
+
+            emailHelp.textContent = "";
+        }
+    });
+    NameInput.addEventListener("input", () => {
+        if (NameInput.value.trim().length >= 50) {
+            nameHelp.textContent = "You cannot enter more than 50 characters!";
+
+        } else {
+
+            nameHelp.textContent = "";
+        }
+
+    });
+    MessageInput.addEventListener("input", () => {
+        if (MessageInput.value.trim().length >= 1000) {
+            messageHelp.textContent = "You cannot enter more than 1000 characters!";
+        } else {
+            messageHelp.textContent = "Total characters: " + MessageInput.value.length;
+        }
+    });
+
+    // Initially disable the button
+    submitButton.disabled = true;
+
+    // Add event listeners to all input fields to check validity on input
+    [EmailInput, NameInput, MessageInput].forEach(input => {
+        input.addEventListener("input", () => {
+            submitButton.disabled = !(EmailInput.value.trim().length > 0 && NameInput.value.trim().length > 0 && MessageInput.value.trim().length > 0 && EmailInput.value.trim().length < 50 && NameInput.value.trim().length < 50 && MessageInput.value.trim().length < 1000);
+        });
+    });
+</script>
 {% endblock %}
 
 {% block right %}
-    
+
 <div style="width: 350px; margin: auto; text-align: center;">
-    <p class="mt-4">We will get back to your email as soon as possible! 📧</p>
-    <p>Feel free to share suggestions, problems, or anything else you'd like! 🤔💡🐛</p>
+    <h4 class="mt-4">When you share your message everyone can answer it ! </h4>
+    <h4>Feel free to share suggestions, problems, or anything else you'd like! 🤔💡🐛</h4>
+
+    <h3>Previous Messages</h3>
+    {% for i in msgs %}
+    <small>{{i.timestamp}}</small>
+    <small>{{i.name}}</small>
+    <a href="{% url 'answer' i.id %}" style="text-decoration:none;"><p>{{i.message}}</p></a>
+    {% endfor %}
 </div>
 
 {% endblock right %}

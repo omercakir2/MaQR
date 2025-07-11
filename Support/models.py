@@ -9,3 +9,11 @@ class Support(models.Model):
 
     def __str__(self):
         return f"Support request from {self.name}"
+
+class Answer(models.Model):
+    answer = models.TextField(max_length=1000)
+    support = models.ForeignKey(Support,on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Answer to message #{self.support.id}"
