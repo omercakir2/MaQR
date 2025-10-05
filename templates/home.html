@@ -10,6 +10,8 @@
 <form method="POST">
     {% csrf_token %}
     <div style="width: 350px; margin: auto;">
+        <input type="hidden" name="form_type" value="form1">
+
         <label class="form-label mt-4">Url Adress</label>
         <input name="url" type="text" class="form-control" id="url" aria-describedby="urlHelp" placeholder="Enter url">
 
@@ -39,10 +41,10 @@
 
     urlInput.addEventListener("input", () => {
         // Trim whitespace and check if input has any characters
-        if (urlInput.value.trim().length > 0) {
-            submitButton.disabled = false;
-        } else {
+        if (urlInput.value.trim().length == 0) {
             submitButton.disabled = true;
+        } else {
+            submitButton.disabled = false;
         }
     });
 </script>
@@ -54,10 +56,13 @@
     {% if qr and url %}
     <div class="card mb-3">
 
+
+
         <h3 class="card-header">Generated QR Code</h3>
         <div class="progress">
             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0"
-                id="progressBar" aria-valuemin="0" aria-valuemax="100" style="width: 0%; background-color: #28a745;"></div>
+                id="progressBar" aria-valuemin="0" aria-valuemax="100" style="width: 0%; background-color: #28a745;">
+            </div>
         </div>
         <div class="card-body">
             <h5 class="card-title">Content : {{url}}</h5>
@@ -67,10 +72,13 @@
         <text x="50%" y="50%" fill="#dee2e6" dy=".3em">{{url}}</text>
 
     </div>
+    <label for="name">Enter custom name:</label>
+    <input type="text" id="name" placeholder="my_qr">
+    <button id="downloadBtn" class="btn btn-outline-success">Download PNG</button>
 
-    <a href="data:image/png;base64,{{ qr }}" download="qrcode.png">
-        <button type="button" class="btn btn-outline-success">Download The Png</button>
-    </a>
+
+
+
     {% endif %}
 </div>
 <script>
@@ -85,5 +93,12 @@
             progressBar.setAttribute('aria-valuenow', width);
         }
     }, 1); // Adjust the interval for speed
+    document.getElementById("downloadBtn").addEventListener("click", function () {
+        const name = document.getElementById("name").value || "qr_code";
+        const link = document.createElement("a");
+        link.href = "data:image/png;base64,{{ qr }}";
+        link.download = name + ".png";
+        link.click();
+    });
 </script>
 {% endblock %}

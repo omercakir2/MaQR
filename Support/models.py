@@ -16,4 +16,4 @@ class Answer(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Answer to message #{self.support.id}"
+        return f"Answer to message #{self.support.id}"  
